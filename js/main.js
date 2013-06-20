@@ -24,8 +24,8 @@ app.controller(
 		};
 
 		$scope.resize = function() {
-			$scope.carouselWidth = 'width:' + window.innerWidth * $scope.carousel.length + 'px;';
-			$scope.carouselItemWidth = 'width:' + window.innerWidth + 'px;';
+			$scope.carouselWidth = window.innerWidth * $scope.carousel.length;
+			$scope.carouselItemWidth = window.innerWidth;
 			console.log ( 'CarouselCtrl resize! ', $scope.carouselWidth, $scope.carouselItemWidth );
 		};
 
