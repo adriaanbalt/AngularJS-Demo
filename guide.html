@@ -2,7 +2,7 @@
 	<h1>Guide to the Markets</h1>
 </header>
 
-<div resize ng-controller="CarouselCtrl">
+<div resize ng-controller="CarouselCtrl" >
 
 	<nav id='subnav' class='clearfix'>
 		<ul>
@@ -14,7 +14,7 @@
 
 	<a ng-click='goPrev()'>PREV</a>
 	<a ng-click='goNext()'>NEXT</a>
-	<ul id='carousel' class='clearfix' style='{{carouselWidth}}'>
+	<ul id='carousel' class='clearfix' style='{{carouselWidth}}' >
 		<li ng-repeat="item in carousel" style='{{carouselItemWidth}}'>
 			<h1>{{item.header}}</h1>
 			<p>{{item.paragraph}}</p>

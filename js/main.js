@@ -12,7 +12,7 @@ app.controller(
 			{header:'Item Five', paragraph:'Lorem ipsum dolar', image:'', href:''},
 			{header:'View All', paragraph:'Lorem ipsum dolar', image:'', href:''}
 		];
-
+		
 		$scope.goNext = function() {
 			// go to next page
 			console.log ( "NEXT!" );
@@ -24,38 +24,39 @@ app.controller(
 		};
 
 		$scope.resize = function() {
-			console.log ( 'CarouselCtrl resize!' );
-			$scope.carouselWidth = 'width:' + window.innerWidth * $scope.carousel.length + 'px';
+			$scope.carouselWidth = 'width:' + window.innerWidth * $scope.carousel.length + 'px;';
 			$scope.carouselItemWidth = 'width:' + window.innerWidth + 'px;';
+			console.log ( 'CarouselCtrl resize! ', $scope.carouselWidth, $scope.carouselItemWidth );
 		};
 
 		$scope.resize();
+
 	});
 
 app.controller(
 	'MainNavCtrl',
 	function($scope) {
 		$scope.nav = [
-			{header:'Home', paragraph:'Lorem ipsum dolar', image:''},
-			{header:'Section 1', paragraph:'Lorem ipsum dolar', image:''},
-			{header:'Section 2', paragraph:'Lorem ipsum dolar', image:''},
-			{header:'Section 3', paragraph:'Lorem ipsum dolar', image:''},
-			{header:'Section 4', paragraph:'Lorem ipsum dolar', image:''},
-			{header:'Settings', paragraph:'Lorem ipsum dolar', image:''}
+			{header:'Home', href:'/', image:''},
+			{header:'Section 1', href:'/#/guide', image:''},
+			{header:'Section 2', href:'/', image:''},
+			{header:'Section 3', href:'/', image:''},
+			{header:'Section 4', href:'/', image:''},
+			{header:'Settings', href:'/', image:''}
 		];
 
 		$scope.resize = function() {
 			console.log ( 'MainNavCtrl resize!' );
 		};
-
-		$scope.resize();
 	});
 
 app.directive(
 	'resize',
 	function() {
 		function link( $scope, element, attributes ) {
-			window.onresize = $scope.resize;
+			window.onresize = function() {
+    			$scope.$apply($scope.resize);
+			}
 		};
 		return({
 			link: link
