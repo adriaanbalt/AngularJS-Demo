@@ -24,7 +24,7 @@ app.controller(
 		};
 
 		$scope.resize = function() {
-			console.log ( 'carousel resize!' );
+			console.log ( 'CarouselCtrl resize!' );
 			$scope.carouselWidth = 'width:' + window.innerWidth * $scope.carousel.length + 'px';
 			$scope.carouselItemWidth = 'width:' + window.innerWidth + 'px;';
 		};
@@ -43,6 +43,23 @@ app.controller(
 			{header:'Section 4', paragraph:'Lorem ipsum dolar', image:''},
 			{header:'Settings', paragraph:'Lorem ipsum dolar', image:''}
 		];
+
+		$scope.resize = function() {
+			console.log ( 'MainNavCtrl resize!' );
+		};
+
+		$scope.resize();
+	});
+
+app.directive(
+	'resize',
+	function() {
+		function link( $scope, element, attributes ) {
+			window.onresize = $scope.resize;
+		};
+		return({
+			link: link
+		});
 	});
 
 app.config(function($routeProvider) {
@@ -53,3 +70,4 @@ app.config(function($routeProvider) {
 			when('/guide', {controller:app.CarouselCtrl, templateUrl:'guide.html'}).
 			otherwise({redirectTo:'/'});
 	});
+
