@@ -3,20 +3,27 @@ var app = angular.module( "demo", [] );
 
 app.controller(
 	'CarouselCtrl',
-	function( $scope ) {
+	function( $scope, $routeParams ) {
 		$scope.carousel = [
-			{header:'Item One', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:''},
-			{header:'Item Two', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:''},
-			{header:'Item Three', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:''},
-			{header:'Item Four', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:''},
-			{header:'Item Five', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:''},
-			{header:'View All', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:''}
+			{header:'Item One', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:'/#/guide/1'},
+			{header:'Item Two', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:'/#/guide/2'},
+			{header:'Item Three', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:'/#/guide/3'},
+			{header:'Item Four', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:'/#/guide/4'},
+			{header:'Item Five', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:'/#/guide/5'},
+			{header:'View All', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:'/#/guide/6'}
 		];
 		
 		$scope.newPos = 0;
 		windowWidth = window.innerWidth;
 		$scope.carouselWidth = windowWidth * $scope.carousel.length;
 		$scope.carouselItemWidth = windowWidth;
+
+
+		$scope.gotoItem = function( index ) {
+			if ( -($scope.carouselWidth-$scope.carouselItemWidth) < $scope.newPos && $scope.newPos < 0 || $scope.newPos === 0 ) $scope.newPos = -(windowWidth*(index-1));
+
+			console.log ( 'gotoitem windowWidth*index: ', windowWidth*index, $scope.newPos );
+		};
 
 		$scope.goNext = function() {
 			// go to next page
@@ -33,6 +40,7 @@ app.controller(
 			$scope.carouselWidth = windowWidth * $scope.carousel.length;
 			$scope.carouselItemWidth = windowWidth;
 		};
+		$scope.gotoItem( $routeParams.index );
 
 	});
 
@@ -69,7 +77,7 @@ app.directive(
 app.config(function($routeProvider) {
 		$routeProvider.
 			// when('/', {controller:ListCtrl, templateUrl:'list.html'}).
-			// when('/edit/:projectId', {controller:EditCtrl, templateUrl:'detail.html'}).
+			when('/guide/:index', {controller:app.CarouselCtrl, templateUrl:'guide.html'}).
 			when('/guide', {controller:app.CarouselCtrl, templateUrl:'guide.html'}).
 			otherwise({redirectTo:'/'});
 	});
