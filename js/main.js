@@ -64,7 +64,6 @@ app.directive(
 	});
 
 app.config(function($routeProvider) {
-		console.log ( "GO");
 		$routeProvider.
 			// when('/', {controller:ListCtrl, templateUrl:'list.html'}).
 			// when('/edit/:projectId', {controller:EditCtrl, templateUrl:'detail.html'}).
