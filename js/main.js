@@ -13,15 +13,13 @@ app.controller(
 			{header:'View All', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:'/#/guide/6'}
 		];
 		
-		$scope.newPos = 0;
 		windowWidth = window.innerWidth;
 		$scope.carouselWidth = windowWidth * $scope.carousel.length;
 		$scope.carouselItemWidth = windowWidth;
 
 
 		$scope.gotoItem = function( index ) {
-			if ( -($scope.carouselWidth-$scope.carouselItemWidth) < $scope.newPos && $scope.newPos < 0 || $scope.newPos === 0 ) $scope.newPos = -(windowWidth*(index-1));
-
+			if ( -($scope.carouselWidth-$scope.carouselItemWidth) < $scope.newPos && $scope.newPos < 0 || $scope.newPos === undefined ) $scope.newPos = -(windowWidth*(index-1));
 			console.log ( 'gotoitem windowWidth*index: ', windowWidth*index, $scope.newPos );
 		};
 
