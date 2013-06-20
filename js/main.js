@@ -25,12 +25,12 @@ app.controller(
 
 		$scope.goNext = function() {
 			// go to next page
-			if ( $scope.newPos < 0 ) $scope.newPos += windowWidth;
+			if ( $scope.newPos > -($scope.carouselWidth-$scope.carouselItemWidth) ) $scope.newPos -= windowWidth;
 		};
 
 		$scope.goPrev = function() {
 			// go to prev page
-			if ( $scope.newPos > -($scope.carouselWidth-$scope.carouselItemWidth) ) $scope.newPos -= windowWidth;
+			if ( $scope.newPos < 0 ) $scope.newPos += windowWidth;
 		};
 
 		$scope.resize = function() {
