@@ -15,7 +15,7 @@
 	<a ng-click='goPrev()'>PREV</a>
 	<a ng-click='goNext()'>NEXT</a>
 
-	<ul id='carousel' class='clearfix' ng-style="{ 'width': carouselWidth + 'px' }" >
+	<ul id='carousel' class='transition clearfix' ng-style="{ 'left': newPos + 'px', 'width': carouselWidth + 'px' }" >
 		<li ng-repeat="item in carousel" ng-style="{ 'width': carouselItemWidth + 'px' }">
 			<h1>{{item.header}}</h1>
 			<p>{{item.paragraph}}</p>

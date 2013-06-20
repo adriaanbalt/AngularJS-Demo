@@ -13,23 +13,29 @@ app.controller(
 			{header:'View All', paragraph:'Lorem ipsum dolar', image:'', href:''}
 		];
 		
+		$scope.newPos = 0;
+		windowWidth = window.innerWidth;
+		$scope.carouselWidth = windowWidth * $scope.carousel.length;
+		$scope.carouselItemWidth = windowWidth;
+
 		$scope.goNext = function() {
 			// go to next page
 			console.log ( "NEXT!" );
+			if ( $scope.newPos < 0 ) $scope.newPos += windowWidth;
 		};
 
 		$scope.goPrev = function() {
 			// go to prev page
 			console.log ( "PREV!" );
+			if ( $scope.newPos < ($scope.carouselWidth-$scope.carouselItemWidth) ) $scope.newPos -= windowWidth;
 		};
 
 		$scope.resize = function() {
-			$scope.carouselWidth = window.innerWidth * $scope.carousel.length;
-			$scope.carouselItemWidth = window.innerWidth;
+			windowWidth = window.innerWidth;
+			$scope.carouselWidth = windowWidth * $scope.carousel.length;
+			$scope.carouselItemWidth = windowWidth;
 			console.log ( 'CarouselCtrl resize! ', $scope.carouselWidth, $scope.carouselItemWidth );
 		};
-
-		$scope.resize();
 
 	});
 
