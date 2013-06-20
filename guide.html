@@ -1,0 +1,24 @@
+<header>
+	<h1>Guide to the Markets</h1>
+</header>
+
+<div ng-controller="CarouselCtrl">
+
+	<nav id='subnav' class='clearfix'>
+		<ul>
+			<li ng-repeat="item in carousel">
+				<a href='{{item.href}}'>{{item.header}}</a>
+			</li>
+		</ul>
+	</nav>
+
+	<a ng-click='goPrev()'>PREV</a>
+	<a ng-click='goNext()'>NEXT</a>
+	<ul id='carousel' class='clearfix' style='{{carouselWidth}}'>
+		<li ng-repeat="item in carousel" style='{{carouselItemWidth}}'>
+			<h1>{{item.header}}</h1>
+			<p>{{item.paragraph}}</p>
+		</li>
+	</ul>
+
+</div>
