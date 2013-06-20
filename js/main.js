@@ -5,12 +5,12 @@ app.controller(
 	'CarouselCtrl',
 	function( $scope ) {
 		$scope.carousel = [
-			{header:'Item One', paragraph:'Lorem ipsum dolar', image:'', href:''},
-			{header:'Item Two', paragraph:'Lorem ipsum dolar', image:'', href:''},
-			{header:'Item Three', paragraph:'Lorem ipsum dolar', image:'', href:''},
-			{header:'Item Four', paragraph:'Lorem ipsum dolar', image:'', href:''},
-			{header:'Item Five', paragraph:'Lorem ipsum dolar', image:'', href:''},
-			{header:'View All', paragraph:'Lorem ipsum dolar', image:'', href:''}
+			{header:'Item One', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:''},
+			{header:'Item Two', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:''},
+			{header:'Item Three', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:''},
+			{header:'Item Four', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:''},
+			{header:'Item Five', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:''},
+			{header:'View All', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:''}
 		];
 		
 		$scope.newPos = 0;
@@ -20,21 +20,18 @@ app.controller(
 
 		$scope.goNext = function() {
 			// go to next page
-			console.log ( "NEXT!" );
 			if ( $scope.newPos < 0 ) $scope.newPos += windowWidth;
 		};
 
 		$scope.goPrev = function() {
 			// go to prev page
-			console.log ( "PREV!" );
-			if ( $scope.newPos < ($scope.carouselWidth-$scope.carouselItemWidth) ) $scope.newPos -= windowWidth;
+			if ( $scope.newPos > -($scope.carouselWidth-$scope.carouselItemWidth) ) $scope.newPos -= windowWidth;
 		};
 
 		$scope.resize = function() {
 			windowWidth = window.innerWidth;
 			$scope.carouselWidth = windowWidth * $scope.carousel.length;
 			$scope.carouselItemWidth = windowWidth;
-			console.log ( 'CarouselCtrl resize! ', $scope.carouselWidth, $scope.carouselItemWidth );
 		};
 
 	});
@@ -61,7 +58,7 @@ app.directive(
 	function() {
 		function link( $scope, element, attributes ) {
 			window.onresize = function() {
-    			$scope.$apply($scope.resize);
+				$scope.$apply($scope.resize);
 			}
 		};
 		return({
