@@ -19,10 +19,10 @@
 		class='transition clearfix'
 		ng-style="{ 'left': newPos + 'px', 
 					'width': carouselWidth + 'px',
-					'-webkit-transition': transitionSpeed + 's linear all',
-					'-moz-transition': transitionSpeed + 's linear all',
-					'-o-transition': transitionSpeed + 's linear all',
-					'transition': transitionSpeed + 's linear all' }" >
+					'-webkit-transition': transitionDuration + 's linear all',
+					'-moz-transition': transitionDuration + 's linear all',
+					'-o-transition': transitionDuration + 's linear all',
+					'transition': transitionDuration + 's linear all' }" >
 		<li ng-repeat="item in carousel" ng-style="{ 'width': carouselItemWidth + 'px' }">
 			<h1>{{item.header}}</h1>
 			<p>{{item.paragraph}}</p>

@@ -15,7 +15,7 @@ app.controller(
 		windowWidth = window.innerWidth;
 		$scope.carouselWidth = windowWidth * $scope.carousel.length;
 		$scope.carouselItemWidth = windowWidth;
-		$scope.transitionSpeed = .5;
+		$scope.transitionDuration = .5;
 		currentIndex = 1;
 
 		$scope.gotoItem = function( index ) {
@@ -25,21 +25,22 @@ app.controller(
 			// store new index
 			currentIndex = index;
 			// animate to the designated index over a duration based on the difference between them
-			$scope.transitionSpeed = deltaIndex * .5;
+			$scope.transitionDuration = deltaIndex * .5;
 			// increment
-			
 			if ( -($scope.carouselWidth-$scope.carouselItemWidth) <= $scope.newPos && $scope.newPos <= 0 || $scope.newPos === undefined ) $scope.newPos = -(windowWidth*(index-1));
-
-			console.log ( "gotoItem: " , index, $scope.newPos, $location.hash() );
-			// $location.hash( index );
+			// update URL hash
+		console.log ( '$location.path() : ', $location.path() );
+			$location.hash( index );
 		};
 
 		$scope.goNext = function() {
+			$scope.transitionDuration = .5;
 			// go to next page
 			if ( $scope.newPos > -($scope.carouselWidth-$scope.carouselItemWidth) ) $scope.newPos -= windowWidth;
 		};
 
 		$scope.goPrev = function() {
+			$scope.transitionDuration = .5;
 			// go to prev page
 			if ( $scope.newPos < 0 ) $scope.newPos += windowWidth;
 		};
@@ -50,7 +51,9 @@ app.controller(
 			$scope.carouselItemWidth = windowWidth;
 		};
 
-		// $scope.gotoItem( $routeParams.index );
+
+		// first load up automatically repositions the carousel based on hash
+		$scope.gotoItem( $location.hash() );
 
 	});
 
@@ -89,11 +92,13 @@ app.config(function( $routeProvider, $locationProvider ) {
 	$routeProvider.
 		when('/guide/:index', {
 			controller:app.CarouselCtrl, 
-			templateUrl:'guide.html'}
+			templateUrl:'guide.html',
+			reloadOnSearch: false }
 		).
 		when('/guide', {
 			controller:app.CarouselCtrl, 
-			templateUrl:'guide.html'}
+			templateUrl:'guide.html',
+			reloadOnSearch: false }
 		).
 		otherwise({redirectTo:'/'});
 	});
