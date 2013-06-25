@@ -153,7 +153,7 @@ nav a:hover {
     color: white;
     padding: 20px 0;
 }
-
+push
 /* ===============
     ALL: IE Fixes
    =============== */
@@ -174,10 +174,6 @@ nav a:hover {
 
 
 .transition{
-    -webkit-transition: .5s ease-out all;
-    -moz-transition: .5s ease-out all;
-    -o-transition: .5s ease-out all;
-    transition: .5s ease-out all;
     position:relative;
 }
 

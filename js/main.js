@@ -1,9 +1,8 @@
-
 var app = angular.module( "demo", [] );
 
 app.controller(
 	'CarouselCtrl',
-	function( $scope, $routeParams ) {
+	function( $scope, $routeParams, $location ) {
 		$scope.carousel = [
 			{header:'Item One', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:'/#/guide/1'},
 			{header:'Item Two', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:'/#/guide/2'},
@@ -16,11 +15,23 @@ app.controller(
 		windowWidth = window.innerWidth;
 		$scope.carouselWidth = windowWidth * $scope.carousel.length;
 		$scope.carouselItemWidth = windowWidth;
-
+		$scope.transitionSpeed = .5;
+		currentIndex = 1;
 
 		$scope.gotoItem = function( index ) {
-			if ( -($scope.carouselWidth-$scope.carouselItemWidth) < $scope.newPos && $scope.newPos < 0 || $scope.newPos === undefined ) $scope.newPos = -(windowWidth*(index-1));
-			console.log ( 'gotoitem windowWidth*index: ', windowWidth*index, $scope.newPos );
+			if ( !index ) index = currentIndex;
+			// find the difference between where the carousel is and where it should go
+			deltaIndex = Math.abs(currentIndex - index);
+			// store new index
+			currentIndex = index;
+			// animate to the designated index over a duration based on the difference between them
+			$scope.transitionSpeed = deltaIndex * .5;
+			// increment
+			
+			if ( -($scope.carouselWidth-$scope.carouselItemWidth) <= $scope.newPos && $scope.newPos <= 0 || $scope.newPos === undefined ) $scope.newPos = -(windowWidth*(index-1));
+
+			console.log ( "gotoItem: " , index, $scope.newPos, $location.hash() );
+			// $location.hash( index );
 		};
 
 		$scope.goNext = function() {
@@ -38,7 +49,8 @@ app.controller(
 			$scope.carouselWidth = windowWidth * $scope.carousel.length;
 			$scope.carouselItemWidth = windowWidth;
 		};
-		$scope.gotoItem( $routeParams.index );
+
+		// $scope.gotoItem( $routeParams.index );
 
 	});
 
@@ -72,11 +84,17 @@ app.directive(
 		});
 	});
 
-app.config(function($routeProvider) {
-		$routeProvider.
-			// when('/', {controller:ListCtrl, templateUrl:'list.html'}).
-			when('/guide/:index', {controller:app.CarouselCtrl, templateUrl:'guide.html'}).
-			when('/guide', {controller:app.CarouselCtrl, templateUrl:'guide.html'}).
-			otherwise({redirectTo:'/'});
+app.config(function( $routeProvider, $locationProvider ) {
+	// $locationProvider.html5Mode(true);
+	$routeProvider.
+		when('/guide/:index', {
+			controller:app.CarouselCtrl, 
+			templateUrl:'guide.html'}
+		).
+		when('/guide', {
+			controller:app.CarouselCtrl, 
+			templateUrl:'guide.html'}
+		).
+		otherwise({redirectTo:'/'});
 	});
 

@@ -7,7 +7,7 @@
 	<nav id='subnav' class='clearfix'>
 		<ul>
 			<li ng-repeat="item in carousel">
-				<a href='{{item.href}}'>{{item.header}}</a>
+				<a href='' ng-click='gotoItem($index+1)'>{{item.header}}</a>
 			</li>
 		</ul>
 	</nav>
@@ -15,11 +15,18 @@
 	<a ng-click='goPrev()'>PREV</a>
 	<a ng-click='goNext()'>NEXT</a>
 
-	<ul id='carousel' class='transition clearfix' ng-style="{ 'left': newPos + 'px', 'width': carouselWidth + 'px' }" >
+	<ul id='carousel' 
+		class='transition clearfix'
+		ng-style="{ 'left': newPos + 'px', 
+					'width': carouselWidth + 'px',
+					'-webkit-transition': transitionSpeed + 's linear all',
+					'-moz-transition': transitionSpeed + 's linear all',
+					'-o-transition': transitionSpeed + 's linear all',
+					'transition': transitionSpeed + 's linear all' }" >
 		<li ng-repeat="item in carousel" ng-style="{ 'width': carouselItemWidth + 'px' }">
 			<h1>{{item.header}}</h1>
 			<p>{{item.paragraph}}</p>
-			<img src="{{item.image}}"/>
+			<img ng-src="{{item.image}}"/>
 		</li>
 	</ul>
 
