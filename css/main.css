@@ -104,12 +104,6 @@ header {
 /* ==============
     MOBILE: Menu
    ============== */
-#carousel {
-    overflow: hidden;
-  }
-#carousel li {
-    float: left;
-}
 nav ul {
     margin: 0;
     padding: 0;
@@ -153,7 +147,7 @@ nav a:hover {
     color: white;
     padding: 20px 0;
 }
-push
+
 /* ===============
     ALL: IE Fixes
    =============== */
@@ -172,9 +166,20 @@ push
    Author's custom styles
    ========================================================================== */
 
-
+#main {
+    overflow-x: hidden;
+}
 .transition{
     position:relative;
+}
+#carousel {
+    overflow: hidden;
+  }
+#carousel li {
+    float: left;
+}
+#carousel img{
+    width: 100%;
 }
 
 
