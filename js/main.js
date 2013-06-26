@@ -2,22 +2,13 @@ var app = angular.module( "demo", [] );
 
 app.controller(
 	'CarouselCtrl',
-	function( $scope, $routeParams, $location ) {
-		$scope.carousel = [
-			{header:'Item One', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:'/#/guide/1'},
-			{header:'Item Two', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:'/#/guide/2'},
-			{header:'Item Three', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:'/#/guide/3'},
-			{header:'Item Four', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:'/#/guide/4'},
-			{header:'Item Five', paragraph:'Lorem ipsum dolar', image:'img/awareness.jpg', href:'/#/guide/5'},
-			{header:'View All', paragraph:'Lorem ipsum dolar', image:'img/lone-ranger.jpg', href:'/#/guide/6'}
-		];
+	function( $scope, $routeParams, $location, $http ) {
+		$http.get('../carousel.json')
+			.then(function(res){
+			$scope.carousel = res.data;
+			$scope.init();
+		});
 		
-		windowWidth = window.innerWidth;
-		$scope.carouselWidth = windowWidth * $scope.carousel.length;
-		$scope.carouselItemWidth = windowWidth;
-		$scope.transitionDuration = .5;
-		currentIndex = 1;
-
 		$scope.gotoItem = function( index ) {
 			if ( !index ) index = currentIndex;
 			// find the difference between where the carousel is and where it should go
@@ -29,7 +20,6 @@ app.controller(
 			// increment
 			if ( -($scope.carouselWidth-$scope.carouselItemWidth) <= $scope.newPos && $scope.newPos <= 0 || $scope.newPos === undefined ) $scope.newPos = -(windowWidth*(index-1));
 			// update URL hash
-		console.log ( '$location.path() : ', $location.path() );
 			$location.hash( index );
 		};
 
@@ -50,24 +40,26 @@ app.controller(
 			$scope.carouselWidth = windowWidth * $scope.carousel.length;
 			$scope.carouselItemWidth = windowWidth;
 		};
-
-
-		// first load up automatically repositions the carousel based on hash
-		$scope.gotoItem( $location.hash() );
+		
+		$scope.init = function() {
+			windowWidth = window.innerWidth;
+			$scope.carouselWidth = windowWidth * $scope.carousel.length;
+			$scope.carouselItemWidth = windowWidth;
+			$scope.transitionDuration = .5;
+			currentIndex = 1;
+			// first load up automatically repositions the carousel based on hash
+			$scope.gotoItem( $location.hash() );
+		}
 
 	});
 
 app.controller(
 	'MainNavCtrl',
-	function($scope) {
-		$scope.nav = [
-			{header:'Home', href:'/', image:''},
-			{header:'Section 1', href:'/#/guide', image:''},
-			{header:'Section 2', href:'/', image:''},
-			{header:'Section 3', href:'/', image:''},
-			{header:'Section 4', href:'/', image:''},
-			{header:'Settings', href:'/', image:''}
-		];
+	function( $scope, $http ) {
+		$http.get('../nav.json')
+			.then(function(res){
+			$scope.nav = res.data;
+		});
 
 		$scope.resize = function() {
 			console.log ( 'MainNavCtrl resize!' );

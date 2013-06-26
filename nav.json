@@ -1,0 +1,26 @@
+[
+	{
+		"header":"Home",
+		"href":"/"
+	},
+	{
+		"header":"Section 1",
+		"href":"/#/guide"
+	},
+	{
+		"header":"Section 2",
+		"href":"/"
+	},
+	{
+		"header":"Section 3",
+		"href":"/"
+	},
+	{
+		"header":"Section 4",
+		"href":"/"
+	},
+	{
+		"header":"Settings",
+		"href":"/"
+	}
+]

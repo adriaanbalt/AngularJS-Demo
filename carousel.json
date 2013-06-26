@@ -1,0 +1,38 @@
+[
+	{
+		"header":"Item One", 
+		"paragraph":"Lorem ipsum dolar", 
+		"image":"img/awareness.jpg", 
+		"href":"/#/guide/1"
+	},
+	{
+		"header":"Item Two", 
+		"paragraph":"Lorem ipsum dolar", 
+		"image":"img/lone-ranger.jpg", 
+		"href":"/#/guide/2"
+	},
+	{
+		"header":"Item Three", 
+		"paragraph":"Lorem ipsum dolar", 
+		"image":"img/awareness.jpg", 
+		"href":"/#/guide/3"
+	},
+	{
+		"header":"Item Four", 
+		"paragraph":"Lorem ipsum dolar",
+		"image":"img/lone-ranger.jpg",
+		"href":"/#/guide/4"
+	},
+	{
+		"header":"Item Five", 
+		"paragraph":"Lorem ipsum dolar",
+		"image":"img/awareness.jpg",
+		"href":"/#/guide/5"
+	},
+	{
+		"header":"View All", 
+		"paragraph":"Lorem ipsum dolar",
+		"image":"img/lone-ranger.jpg",
+		"href":"/#/guide/6"
+	}
+]
