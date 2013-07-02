@@ -7,14 +7,14 @@
 	<nav id='subnav' class='clearfix'>
 		<ul>
 			<li ng-repeat="item in carousel">
-				<a href='' ng-click='gotoItem($index+1)'>{{item.header}}</a>
+				<a href='' ng-click='clickToItem($index+1)'>{{item.header}}</a>
 			</li>
 		</ul>
 	</nav>
 
 	<a ng-click='goPrev()'>PREV</a>
 	<a ng-click='goNext()'>NEXT</a>
-
+	
 	<ul id='carousel' 
 		class='transition clearfix'
 		ng-style="{ 'left': newPos + 'px', 
