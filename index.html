@@ -13,16 +13,16 @@
 	</head>
 	<body>
 
-		<div id='main' ng-view>
-		</div>
-
-		<nav resize ng-controller='MainNavCtrl'>
+		<nav resize ng-controller='MainNavCtrl' class='clearfix'>
 			<ul>
 				<li ng-repeat='item in nav'>
 					<a href='{{item.href}}'>{{item.header}}</a>
 				</li>
 			</ul>
 		</nav>
+
+		<div id='main' ng-view>
+		</div>
 
 		<script src="js/vendor/angular.min.js"></script>
 		<script src="js/main.js"></script>
